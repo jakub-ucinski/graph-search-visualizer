@@ -1,0 +1,9 @@
+.DraggableArea {
+  padding: 1em;
+  border-radius: 1em;
+  border: 2px solid #2b303a;
+  height: 500px;
+
+  position: relative;
+  box-sizing: border-box;
+}
