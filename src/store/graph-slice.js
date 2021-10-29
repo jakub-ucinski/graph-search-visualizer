@@ -39,8 +39,6 @@ const graphSlice = createSlice({
         state.nodes[index].x = action.payload.x;
         state.nodes[index].y = action.payload.y;
       }
-
-      //   console.log(state.nodes[index].x);
     },
   },
 });

@@ -4,10 +4,7 @@
   height: 30px;
   width: 30px;
   position: absolute;
-  /* z-index: 9; */
-
   transform: translate(-50%, -50%);
-  /* margin: 1em; */
 }
 
 .node:hover {
@@ -16,7 +13,4 @@
 
 .nodeWrapper {
   position: absolute;
-  /* height: 30px; */
-  /* width: 30px; */
-  /* background-color: #92dce5; */
 }
