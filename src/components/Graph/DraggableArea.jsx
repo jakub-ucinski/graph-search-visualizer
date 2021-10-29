@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import styles from "./DraggableArea.module.css";
-
-import Node from "./Node";
+import Edges from "./Edges";
+import Nodes from "./Nodes";
 
 const DraggableArea = (props) => {
-  const nodes = props.nodes.map((node) => (
-    <Node key={node.id} posX={node.x} posY={node.y} />
-  ));
-
-  return <div className={styles.DraggableArea}>{nodes}</div>;
+  const [size, updateSize] = useState({ width: 500, height: 500 });
+  return (
+    <div
+      className={styles.DraggableArea}
+      style={{ width: size.width, height: size.width }}
+    >
+      <Edges canvasSize={size} />
+      <Nodes />
+    </div>
+  );
 };
 
 export default DraggableArea;

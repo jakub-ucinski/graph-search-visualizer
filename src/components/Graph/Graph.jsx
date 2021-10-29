@@ -3,15 +3,20 @@ import styles from "./Graph.module.css";
 import Component from "../UI/Component";
 import DraggableArea from "./DraggableArea";
 
-const NODES = [
-  { id: 0, x: 50, y: 0, neighbours: new Set().add(1) },
-  { id: 1, x: 50, y: 0, neighbours: new Set().add(0) },
-];
+// const edgeOptions = {
+//   UNDIR: 0,
+//   DIR: 1,
+// };
+// const NODES = [
 
-const Graph = (props) => {
+// ];
+
+// const EDGES = [(0, 1, edgeOptions.UNDIR)];
+
+const Graph = () => {
   return (
     <Component title="Graph" className={styles.Graph}>
-      <DraggableArea nodes={NODES} />
+      <DraggableArea />
     </Component>
   );
 };

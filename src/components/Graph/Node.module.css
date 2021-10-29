@@ -1,15 +1,22 @@
 .node {
   border-radius: 100%;
-  background-color: #92dce5;
+  background-color: #2b303a;
   height: 30px;
   width: 30px;
   position: absolute;
-  z-index: 9;
+  /* z-index: 9; */
 
-  /* transform: translate(-50%, -50%); */
+  transform: translate(-50%, -50%);
   /* margin: 1em; */
 }
 
 .node:hover {
   cursor: grab;
+}
+
+.nodeWrapper {
+  position: absolute;
+  /* height: 30px; */
+  /* width: 30px; */
+  /* background-color: #92dce5; */
 }
