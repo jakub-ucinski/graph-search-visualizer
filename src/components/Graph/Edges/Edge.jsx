@@ -6,8 +6,6 @@ const Edge = (props) => {
   const node0 = nodes.find((node) => node.id === props.node0Id);
   const node1 = nodes.find((node) => node.id === props.node1Id);
 
-  console.log([node0.x, node0.y]);
-  console.log([node1.x, node1.y]);
   return (
     <line
       x1={node0.x}

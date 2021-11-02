@@ -27,8 +27,8 @@ const graphSlice = createSlice({
 
       state.nodes.push({
         id: newNode.id,
-        x: newNode.title,
-        y: newNode.price,
+        x: newNode.x,
+        y: newNode.y,
       });
     },
     removeNode(state, action) {

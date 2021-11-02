@@ -9,6 +9,9 @@ const Node = (props) => {
   const dispatch = useDispatch();
 
   const draggingStopHandler = (e, data) => {
+    e.stopPropagation();
+    e.preventDefault();
+
     dispatch(
       graphActions.updateNodePosition({
         id: props.id,
@@ -27,7 +30,11 @@ const Node = (props) => {
       bounds="parent"
       defaultPosition={{ x: props.posX, y: props.posY }}
     >
-      <div ref={nodeRef} className={styles.nodeWrapper}>
+      <div
+        onClick={(e) => e.stopPropagation()}
+        ref={nodeRef}
+        className={styles.nodeWrapper}
+      >
         <div className={styles.node} />
       </div>
     </Draggable>
