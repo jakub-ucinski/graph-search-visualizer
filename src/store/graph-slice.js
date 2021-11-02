@@ -9,8 +9,13 @@ const initialGraphState = {
   nodes: [
     { id: 0, x: 50, y: 0 },
     { id: 1, x: 80, y: 0 },
+    { id: 2, x: 100, y: 50 },
   ],
-  edges: [[0, 1, eOptions.UNDIR]],
+  edges: [
+    [0, 1, eOptions.UNDIR],
+    [1, 2, eOptions.UNDIR],
+    [0, 2, eOptions.UNDIR],
+  ],
 };
 
 const graphSlice = createSlice({

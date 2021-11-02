@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import styles from "./Node.module.css";
 import Draggable from "react-draggable";
 import { useDispatch } from "react-redux";
-import { graphActions } from "../../store/graph-slice";
+import { graphActions } from "../../../store/graph-slice";
 
 const Node = (props) => {
   const nodeRef = useRef();
