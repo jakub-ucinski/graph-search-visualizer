@@ -11,12 +11,10 @@ const DraggableArea = (props) => {
   const [size] = useState({ width: 500, height: 500 });
 
   const dispatch = useDispatch();
-  const nodesNo = useSelector((state) => state.graph.nodes).length;
 
   const clickHandler = (e) => {
     dispatch(
       graphActions.addNode({
-        id: nodesNo,
         x: e.nativeEvent.layerX,
         y: e.nativeEvent.layerY,
       })

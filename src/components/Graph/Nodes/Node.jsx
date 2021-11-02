@@ -1,12 +1,15 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./Node.module.css";
 import Draggable from "react-draggable";
 import { useDispatch } from "react-redux";
 import { graphActions } from "../../../store/graph-slice";
+import NodeOptions from "./NodeOptions/NodeOptions";
 
 const Node = (props) => {
   const nodeRef = useRef();
   const dispatch = useDispatch();
+
+  const [areNodeOptionOpen, updateAreNodeOptionOpen] = useState(false);
 
   const draggingStopHandler = (e, data) => {
     dispatch(
@@ -16,6 +19,18 @@ const Node = (props) => {
         y: data.y,
       })
     );
+  };
+
+  let timeout;
+
+  const mouseOverHandler = () => {
+    timeout && clearTimeout(timeout);
+    updateAreNodeOptionOpen(true);
+  };
+
+  const mouseLeaveHandler = () => {
+    timeout && clearTimeout(timeout);
+    timeout = setTimeout(() => updateAreNodeOptionOpen(false), 200);
   };
 
   return (
@@ -32,7 +47,18 @@ const Node = (props) => {
         ref={nodeRef}
         className={styles.nodeWrapper}
       >
-        <div className={styles.node} />
+        {areNodeOptionOpen && (
+          <NodeOptions
+            onMouseOver={mouseOverHandler}
+            onMouseLeave={mouseLeaveHandler}
+            nodeId={props.id}
+          />
+        )}
+        <div
+          className={styles.node}
+          onMouseOver={mouseOverHandler}
+          onMouseLeave={mouseLeaveHandler}
+        />
       </div>
     </Draggable>
   );

@@ -6,6 +6,10 @@ const Edge = (props) => {
   const node0 = nodes.find((node) => node.id === props.node0Id);
   const node1 = nodes.find((node) => node.id === props.node1Id);
 
+  // if (!node0 || !node1) {
+  //   return <></>;
+  // }
+
   return (
     <line
       x1={node0.x}

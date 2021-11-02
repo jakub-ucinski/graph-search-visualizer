@@ -7,10 +7,10 @@ const Edges = (props) => {
   const edges = useSelector((state) => state.graph.edges);
   const edgeComponents = edges.map((edge) => (
     <Edge
-      key={`${edge[0]}${edge[1]}`}
-      node0Id={edge[0]}
-      node1Id={edge[1]}
-      dir={edge[2]}
+      key={`${edge.nodesBetween[0]}${edge.nodesBetween[1]}`}
+      node0Id={edge.nodesBetween[0]}
+      node1Id={edge.nodesBetween[1]}
+      dir={edge.edgeVariant}
       color="#2b303a"
     />
   ));

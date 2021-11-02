@@ -1,0 +1,12 @@
+.NodeOption {
+  background-color: transparent;
+  border: none;
+  color: white;
+  outline: none;
+  transition-duration: 0.3s;
+}
+
+.NodeOption:hover {
+  transform: scale(1.2, 1.2);
+  cursor: pointer;
+}

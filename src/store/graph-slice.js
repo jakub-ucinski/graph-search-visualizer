@@ -12,10 +12,11 @@ const initialGraphState = {
     { id: 2, x: 100, y: 50 },
   ],
   edges: [
-    [0, 1, eOptions.UNDIR],
-    [1, 2, eOptions.UNDIR],
-    [0, 2, eOptions.UNDIR],
+    { nodesBetween: [0, 1], edgeVariant: eOptions.UNDIR },
+    { nodesBetween: [0, 2], edgeVariant: eOptions.UNDIR },
+    { nodesBetween: [1, 2], edgeVariant: eOptions.UNDIR },
   ],
+  nextId: 4,
 };
 
 const graphSlice = createSlice({
@@ -26,14 +27,19 @@ const graphSlice = createSlice({
       const newNode = action.payload;
 
       state.nodes.push({
-        id: newNode.id,
+        id: state.nextId,
         x: newNode.x,
         y: newNode.y,
       });
+      state.nextId++;
     },
     removeNode(state, action) {
       const nodeId = action.payload;
-      state.nodes = state.nodes.filter((node) => node.id === nodeId);
+      state.edges = state.edges.filter(
+        (edge) =>
+          edge.nodesBetween[0] !== nodeId && edge.nodesBetween[1] !== nodeId
+      );
+      state.nodes = state.nodes.filter((node) => node.id !== nodeId);
     },
     updateNodePosition(state, action) {
       const index = state.nodes.findIndex(
