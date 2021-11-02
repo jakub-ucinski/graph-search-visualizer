@@ -9,9 +9,6 @@ const Node = (props) => {
   const dispatch = useDispatch();
 
   const draggingStopHandler = (e, data) => {
-    e.stopPropagation();
-    e.preventDefault();
-
     dispatch(
       graphActions.updateNodePosition({
         id: props.id,
