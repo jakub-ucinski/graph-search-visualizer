@@ -5,7 +5,6 @@ import Nodes from "./Nodes/Nodes";
 
 import { useDispatch } from "react-redux";
 import { graphActions } from "../../store/graph-slice";
-import { useSelector } from "react-redux";
 
 const DraggableArea = (props) => {
   const [size] = useState({ width: 500, height: 500 });
