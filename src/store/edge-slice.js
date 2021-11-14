@@ -35,6 +35,8 @@ const edgeSlice = createSlice({
     setEdgeCreatingFrom(state, action) {
       const id = action.payload;
       // check if the nodes exist
+      state.edgeCreatingTo.x = null;
+      state.edgeCreatingTo.y = null;
       state.edgeCreatingFrom = id;
     },
 

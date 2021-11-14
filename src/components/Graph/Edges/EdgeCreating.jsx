@@ -14,8 +14,8 @@ const EdgeCreating = (props) => {
     <line
       x1={nodeFrom.x}
       y1={nodeFrom.y}
-      x2={coordsTo.x ? coordsTo.x : nodeFrom.x}
-      y2={coordsTo.y ? coordsTo.y : nodeFrom.y}
+      x2={coordsTo.x}
+      y2={coordsTo.y}
       stroke={props.color}
       strokeWidth="2"
     />

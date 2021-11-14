@@ -13,8 +13,16 @@ const NodeOptions = (props) => {
     dispatch(nodeActions.removeNode(props.nodeId));
   };
 
-  const addEdgeHandler = () => {
+  const addEdgeHandler = (e) => {
     dispatch(edgeActions.setEdgeCreatingFrom(props.nodeId));
+    dispatch(
+      edgeActions.setEdgeCreatingTo({
+        x: e.nativeEvent.layerX,
+        y: e.nativeEvent.layerY,
+      })
+    );
+
+    e.stopPropagation();
   };
 
   const nodeOptions = [

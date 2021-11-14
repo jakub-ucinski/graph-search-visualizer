@@ -1,8 +1,11 @@
 import React, { useRef, useState } from "react";
 import styles from "./Node.module.css";
 import Draggable from "react-draggable";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { nodeActions } from "../../../store/node-slice";
+import { edgeActions } from "../../../store/edge-slice";
+import { eOptions } from "../../../store/edge-slice";
+
 import NodeOptions from "./NodeOptions/NodeOptions";
 
 const Node = (props) => {
@@ -12,6 +15,10 @@ const Node = (props) => {
   const [areNodeOptionOpen, updateAreNodeOptionOpen] = useState(false);
   const [isDragging, updateIsDragging] = useState(false);
 
+  const edgeCreatingFrom = useSelector((state) => state.edge.edgeCreatingFrom);
+
+  const edges = useSelector((state) => state.edge.edges);
+  let existingEdge = null;
   const draggingStopHandler = (e, data) => {
     updateIsDragging(false);
     dispatch(
@@ -34,6 +41,28 @@ const Node = (props) => {
     );
   };
 
+  const clickHandler = (e, data) => {
+    if (edgeCreatingFrom) {
+      dispatch(
+        edgeActions.setEdgeCreatingFrom(null)
+      );
+      existingEdge = edges.find(
+        (edge) =>
+          edge.nodesBetween[0] === edgeCreatingFrom &&
+          edge.nodesBetween[1] === props.id
+      );
+      if (!existingEdge) {
+        // updateIsDragging(true);
+        dispatch(
+          edgeActions.addEdge({
+            nodesBetween: [edgeCreatingFrom, props.id],
+            edgeVariant: eOptions.UNDIR,
+          })
+        );
+      }
+    }
+  };
+
   let timeout;
 
   const mouseOverHandler = () => {
@@ -53,6 +82,7 @@ const Node = (props) => {
   return (
     <Draggable
       nodeRef={nodeRef}
+      onStart={clickHandler}
       onDrag={draggingHandler}
       onStop={draggingStopHandler}
       position={{ x: props.posX, y: props.posY }}
