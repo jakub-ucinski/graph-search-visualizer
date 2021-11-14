@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import styles from "./Node.module.css";
 import Draggable from "react-draggable";
 import { useDispatch } from "react-redux";
-import { graphActions } from "../../../store/graph-slice";
+import { nodeActions } from "../../../store/node-slice";
 import NodeOptions from "./NodeOptions/NodeOptions";
 
 const Node = (props) => {
@@ -10,10 +10,23 @@ const Node = (props) => {
   const dispatch = useDispatch();
 
   const [areNodeOptionOpen, updateAreNodeOptionOpen] = useState(false);
+  const [isDragging, updateIsDragging] = useState(false);
 
   const draggingStopHandler = (e, data) => {
+    updateIsDragging(false);
     dispatch(
-      graphActions.updateNodePosition({
+      nodeActions.updateNodePosition({
+        id: props.id,
+        x: data.x,
+        y: data.y,
+      })
+    );
+  };
+
+  const draggingHandler = (e, data) => {
+    updateIsDragging(true);
+    dispatch(
+      nodeActions.updateNodePosition({
         id: props.id,
         x: data.x,
         y: data.y,
@@ -29,14 +42,18 @@ const Node = (props) => {
   };
 
   const mouseLeaveHandler = () => {
-    timeout && clearTimeout(timeout);
-    timeout = setTimeout(() => updateAreNodeOptionOpen(false), 200);
+    if (!isDragging) {
+      timeout && clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        updateAreNodeOptionOpen(false);
+      }, 200);
+    }
   };
 
   return (
     <Draggable
       nodeRef={nodeRef}
-      onDrag={draggingStopHandler}
+      onDrag={draggingHandler}
       onStop={draggingStopHandler}
       position={{ x: props.posX, y: props.posY }}
       bounds="parent"

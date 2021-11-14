@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import graphSliceReducer from "./graph-slice";
+import nodeSliceReducer from "./node-slice";
+import edgeSliceReducer from "./edge-slice";
 
 const store = configureStore({
   reducer: {
-    graph: graphSliceReducer,
+    node: nodeSliceReducer,
+    edge: edgeSliceReducer,
   },
 });
 

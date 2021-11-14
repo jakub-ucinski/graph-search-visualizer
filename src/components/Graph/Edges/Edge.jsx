@@ -2,9 +2,13 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 const Edge = (props) => {
-  const nodes = useSelector((state) => state.graph.nodes);
+  const nodes = useSelector((state) => state.node.nodes);
   const node0 = nodes.find((node) => node.id === props.node0Id);
   const node1 = nodes.find((node) => node.id === props.node1Id);
+
+  if (!node0 || !node1) {
+    return <></>;
+  }
 
   return (
     <line

@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import Node from "./Node";
 
 const Nodes = () => {
-  const nodes = useSelector((state) => state.graph.nodes);
+  const nodes = useSelector((state) => state.node.nodes);
 
   const nodeComponents = nodes.map((node) => (
     <Node key={node.id} posX={node.x} posY={node.y} id={node.id} />
