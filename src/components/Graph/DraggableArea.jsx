@@ -23,20 +23,18 @@ const DraggableArea = (props) => {
     );
 
     if (edgeCreatingFrom) {
-
       dispatch(
         edgeActions.addEdge({
           nodesBetween: [edgeCreatingFrom, edgeNewId],
           edgeVariant: eOptions.UNDIR,
         })
       );
-      dispatch(edgeActions.setEdgeCreatingFrom(edgeNewId));
-
+      dispatch(edgeActions.setEdgeCreatingFrom(null));
 
       dispatch(
         edgeActions.setEdgeCreatingTo({
-          x: e.nativeEvent.layerX,
-          y: e.nativeEvent.layerY,
+          x: null,
+          y: null,
         })
       );
     }
